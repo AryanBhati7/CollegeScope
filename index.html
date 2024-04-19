@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Finder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="p-1 bg-slate-900 mx-auto">
+    <div class="w-full h-full">
+
+        <!-- Page - Heading -->
+        <div class="w-full flex items-center justify-center p-5">
+            <h1 class="text-[#ec1302] text-7xl font-bold text-center font-monos">COLLEGE FINDER</h1>
+        </div>
+
+        <div class="w-full flex items-center justify-center p-5">
+            <h3 class="text-white text-center text-2xl">Easily find College Anywhere throughout the globe</h3>
+        </div>
+
+        <!-- Search Bar -->
+        <div class=" bg-white sbg-white h-14 w-full flex items-center px-10 gap-8 md:gap-16 text-2xl">
+            <input class="mx-auto h-10 w-4/12 border-b-4 border-solid border-yellow-500 focus:outline-none" type="text"
+                placeholder="Country..">
+            <input class="mx-auto h-10 w-4/12 border-b-4 border-solid border-yellow-500 focus:outline-none" type="text"
+                placeholder="State..">
+            <button class=" mx-auto h-10 w-4/12  border-b-2  bg-zinc-400">Search</button>
+        </div>
+    </div>
+
+
+    <!-- College List -->
+    <div class="collegeList w-full flex flex-col justify-center items-center mt-10 md:px-5">
+        <div
+            class="college rounded-lg shadow-xl shadow-gray-800 w-full px-2 h-16  bg-[#ADADAD] flex justify-center items-center gap-1">
+            <div class="countryFlag w-2/12 "><img class="w-8 h-6" src="" alt=""></div>
+            <div class="collegeName w-12/12 md:w-full text-base md:text-2xl font-serif text-center">Swarrnim Startup &
+                Innovation
+                University
+            </div>
+            <div class="collegeState w-4/12 md:text-2xl"><i class="fa-solid fa-location-dot"></i> Gujarat</div>
+            <div class="webDomain w-1/12 flex items-center justify-center">
+                <a href=""><i class=" fa-xl fa-solid fa-globe"></i></a>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
