@@ -11,10 +11,18 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!state) {
       state = "null";
     }
-    // if (!country || !state) {
-    //   alert("Please enter both country and state.");
-    //   return;
-    // }
+    Swal.fire({
+      imageUrl: "searching.gif",
+      imageWidth: 200,
+      imageHeight: 200,
+      imageAlt: "Custom image",
+      title: "Searching...",
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      onBeforeOpen: () => {
+        Swal.showLoading();
+      },
+    });
     console.log("btn clicked");
     console.log(country);
 
@@ -25,11 +33,13 @@ document.addEventListener("DOMContentLoaded", function () {
         ? colleges.filter((coll) => coll["state-province"] === state)
         : colleges;
     if (filteredColleges.length === 0) {
-      let icon = "not_found.gif";
       Swal.fire({
         title: "No Colleges Found",
         text: "Check for Spelling mistakes",
-        icon: icon,
+        imageUrl: "not_found.gif",
+        imageWidth: 150,
+        imageHeight: 200,
+        imageAlt: "Custom image",
       });
       return;
     }
@@ -37,6 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(filteredColleges);
     collegeList.innerHTML = "";
     showCollegeList(filteredColleges);
+    Swal.close();
   });
 
   async function getCollege(country) {
@@ -78,14 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
         "flex",
         "justify-center",
         "items-center",
-        "gap-1"
+        "gap-1",
+        "even:bg-white"
       );
 
       //Country Flag
       let countryFlag = document.createElement("div");
       let flagImg = document.createElement("img");
       flagImg.src = collegeData.flag;
-      flagImg.classList.add("w-8", "h-6");
+      flagImg.classList.add("w-12", "h-10");
 
       countryFlag.appendChild(flagImg);
       college.appendChild(countryFlag);
@@ -125,7 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //College Web
       let webIcon = document.createElement("i");
-      webIcon.classList.add("fa-xl", "fa-solid", "fa-globe");
+      webIcon.classList.add("fa-2xl", "fa-solid", "fa-globe");
       let webAnchor = document.createElement("a");
       webAnchor.setAttribute("href", collegeData.web);
       webAnchor.target = "_blank";
