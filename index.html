@@ -13,12 +13,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="p-1 bg-slate-900 mx-auto">
-    <div id="container" class="w-full h-full">
+<body class="p-1 bg-[#232933] mx-auto">
+
+    <!-- <body class="p-1 bg-gradient-to-r from-[#2C2C2C] to-white mx-auto"></body> -->
+    <div id="container" class="w-full h-full pb-4">
 
         <!-- Page - Heading -->
         <div class="w-full flex items-center justify-center p-5">
-            <h1 class="text-[#ec1302] text-7xl font-bold text-center font-monos">COLLEGE FINDER</h1>
+            <h1 class="text-[#FF4444] text-7xl font-bold text-center font-monos">COLLEGE FINDER</h1>
         </div>
 
         <div class="w-full flex items-center justify-center p-5">
@@ -35,30 +37,71 @@
                 class="mx-auto h-10 w-4/12 border-b-4 border-solid border-yellow-500 focus:outline-none" type="text"
                 placeholder="State.." required>
 
-            <button id="searchBtn" class=" mx-auto h-10 w-4/12  border-b-2  bg-zinc-400">Search</button>
+            <button id="searchBtn"
+                class=" mx-auto h-10 w-32 text-white border-b-2 rounded-md hover:bg-zinc-400 bg-zinc-700">Search</button>
         </div>
-    </div>
 
 
-    <!-- College List -->
-    <div id="collegeList" class="w-full flex flex-col justify-center items-center mt-10 md:px-5 gap-5 ">
-        <div id="college"
-            class="rounded-lg shadow-xl shadow-gray-800 w-full px-2 h-16  bg-[#ADADAD] flex justify-center items-center gap-1">
-            <div id="countryFlag"><img class="w-8 h-6" src="" alt=""></div>
-            <div id="collegeName" class="w-12/12 md:w-full text-base md:text-3xl font-serif text-center">Swarrnim
-                Startup &
-                Innovation
-                University
+
+        <!-- College List -->
+        <div id="collegeList" class="w-full flex flex-col justify-center items-center mt-10 md:px-5 gap-5 ">
+            <div id="college"
+                class="text-base md:text-3xl  font-sans rounded-lg shadow-xl  shadow-gray-800 w-full px-5 h-16  bg-[#ADADAD] flex justify-evenly items-center gap-1">
+                <div id="countryFlag" class="w-12 h-11"><img class="w-full h-full rounded-full" src="flag.png" alt="">
+                </div>
+                <div id="collegeName" class="w-48 md:w-full text-center">Swarrnim
+                    Startup &
+                    Innovation
+                    University
+                </div>
+                <div id="collegState" class="w-20 md:w-3/12 flex gap-1 justify-center items-center"><i
+                        class="fa-lg fa-solid fa-location-dot"></i>
+                    <div id="stateText">Gujarat</div>
+                </div>
+                <div id="collegeWeb" class="w-12 flex items-center justify-center">
+                    <a href=""><i class=" fa-xl fa-solid fa-globe"></i></a>
+                </div>
             </div>
-            <div id="collegState" class="w-4/12 md:w-3/12 md:text-3xl"><i class="fa-solid fa-location-dot"></i> Gujarat
+
+
+
+
+
+
+            <div id="college"
+                class="rounded-lg shadow-xl shadow-gray-800 w-full px-2 h-16  bg-[#ADADAD] flex justify-center items-center gap-1">
+                <div id="countryFlag"><img class="w-8 h-6" src="" alt=""></div>
+                <div id="collegeName" class="w-12/12 md:w-full text-base md:text-3xl font-serif text-center">Swarrnim
+                    Startup &
+                    Innovation
+                    University
+                </div>
+                <div id="collegState" class="w-4/12 md:w-3/12 md:text-3xl"><i class="fa-solid fa-location-dot"></i>
+                    Gujarat
+                </div>
+                <div id="collegeWeb" class="w-1/12 flex items-center justify-center">
+                    <a href=""><i class=" fa-xl fa-solid fa-globe"></i></a>
+                </div>
             </div>
-            <div id="collegeWeb" class="w-1/12 flex items-center justify-center">
-                <a href=""><i class=" fa-xl fa-solid fa-globe"></i></a>
+            <div id="college"
+                class="rounded-lg shadow-xl shadow-gray-800 w-full px-2 h-16  bg-[#ADADAD] flex justify-center items-center gap-1">
+                <div id="countryFlag"><img class="w-8 h-6" src="" alt=""></div>
+                <div id="collegeName" class="w-12/12 md:w-full text-base md:text-3xl font-serif text-center">Swarrnim
+                    Startup &
+                    Innovation
+                    University
+                </div>
+                <div id="collegState" class="w-4/12 md:w-3/12 md:text-3xl"><i class="fa-solid fa-location-dot"></i>
+                    Gujarat
+                </div>
+                <div id="collegeWeb" class="w-1/12 flex items-center justify-center">
+                    <a href=""><i class=" fa-xl fa-solid fa-globe"></i></a>
+                </div>
             </div>
         </div>
-    </div>
 
     </div>
+
     <script src="app.js"></script>
 </body>
 

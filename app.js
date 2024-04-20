@@ -7,10 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     let state = capitalizeFirstLetter(
       document.querySelector("#stateInp").value.toLowerCase()
     );
-
+    if (!state && !country) {
+      Swal.fire({
+        // title: "Error",
+        title: "Enter Country or State",
+        icon: "error",
+      });
+      return;
+    }
     if (!state) {
       state = "null";
     }
+
     Swal.fire({
       imageUrl: "searching.gif",
       imageWidth: 200,
@@ -63,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-
+  let collegesData = [];
   function showCollegeList(collList) {
     for (coll of collList) {
       let collegeData = {
@@ -72,6 +80,7 @@ document.addEventListener("DOMContentLoaded", function () {
         state: coll["state-province"] === null ? "N/A" : coll["state-province"],
         web: `https://${coll.domains[0]}`,
       };
+      collegesData.push(collegeData);
       console.log(collegeData.flag);
       console.log(collegeData.name);
       console.log(collegeData.state);
@@ -79,25 +88,30 @@ document.addEventListener("DOMContentLoaded", function () {
       //College Div
       let college = document.createElement("div");
       college.classList.add(
+        "text-base",
+        "md:text-3xl",
+        "font-sans",
         "rounded-lg",
         "shadow-xl",
         "shadow-gray-800",
         "w-full",
-        "px-2",
+        "px-4",
         "h-16",
-        "bg-[#ADADAD]",
+        "bg-[#8D99AE]",
         "flex",
-        "justify-center",
+        "justify-evenly",
         "items-center",
         "gap-1",
-        "even:bg-white"
+        "even:bg-[#EDF2F4]"
       );
 
       //Country Flag
       let countryFlag = document.createElement("div");
+      countryFlag.classList.add("w-12", "h-11");
       let flagImg = document.createElement("img");
       flagImg.src = collegeData.flag;
-      flagImg.classList.add("w-12", "h-10");
+      flagImg.alt = "countryFlag";
+      flagImg.classList.add("w-full", "h-full", "rounded-full");
 
       countryFlag.appendChild(flagImg);
       college.appendChild(countryFlag);
@@ -106,12 +120,10 @@ document.addEventListener("DOMContentLoaded", function () {
       let collegeName = document.createElement("div");
       collegeName.innerText = collegeData.name;
       collegeName.classList.add(
-        "w-12/12",
+        "w-48",
         "md:w-full",
-        "text-base",
-        "md:text-3xl",
-        "font-serif",
-        "text-center"
+        "text-center",
+        "md:text-3xl"
       );
 
       college.appendChild(collegeName);
@@ -119,14 +131,16 @@ document.addEventListener("DOMContentLoaded", function () {
       //College State
       let collegeState = document.createElement("div");
       collegeState.classList.add(
-        "w-4/12",
+        "w-20",
         "md:w-3/12",
         "md:text-3xl",
         "flex",
-        "gap-3"
+        "justify-center",
+        "items-center",
+        "gap-1"
       );
       let stateIcon = document.createElement("i");
-      stateIcon.classList.add("fa-solid", "fa-location-dot");
+      stateIcon.classList.add("fa-lg", "fa-solid", "fa-location-dot");
       collegeState.appendChild(stateIcon);
 
       let stateText = document.createElement("div");
@@ -137,7 +151,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       //College Web
       let webIcon = document.createElement("i");
-      webIcon.classList.add("fa-2xl", "fa-solid", "fa-globe");
+      webIcon.classList.add("fa-xl", "fa-solid", "fa-globe");
       let webAnchor = document.createElement("a");
       webAnchor.setAttribute("href", collegeData.web);
       webAnchor.target = "_blank";
@@ -145,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let collegeWeb = document.createElement("div");
       collegeWeb.classList.add(
-        "w-1/12",
+        "w-12",
         "flex",
         "items-center",
         "justify-center"
