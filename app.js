@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //FUNCTION -  to fetch college from API
   async function getCollege(country) {
-    const collegeAPI = `http://universities.hipolabs.com/search?country=${country}`;
+    const collegeAPI = `//universities.hipolabs.com/search?country=${country}`;
     try {
       let res = await axios.get(collegeAPI);
       return res.data;
