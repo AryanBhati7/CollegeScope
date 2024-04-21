@@ -6,6 +6,8 @@ const app = express();
 
 app.use(cors());
 
+app.use(express.static(__dirname));
+
 app.get("/getCollege", async (req, res) => {
   const { country } = req.query;
   const collegeAPI = `http://universities.hipolabs.com/search?country=${country}`;
