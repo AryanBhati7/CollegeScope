@@ -3,8 +3,6 @@
     "tailwindcss": "^3.4.3"
   },
   "dependencies": {
-    "@json2csv/plainjs": "^7.0.6",
-    "json-2-csv": "^5.5.1",
     "sweetalert2": "^11.10.8"
   }
 }
