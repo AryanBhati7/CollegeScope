@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     if (!state && !country) {
       Swal.fire({
-        // title: "Error",
         title: "Enter Country or State",
         icon: "error",
       });
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
       title: "Searching...",
       allowOutsideClick: false,
       showConfirmButton: false,
-      onBeforeOpen: () => {
+      willOpen: () => {
         Swal.showLoading();
       },
     });
@@ -51,8 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
       return;
     }
-
-    console.log(filteredColleges);
     collegeList.innerHTML = "";
     showCollegeList(filteredColleges);
     Swal.close();
@@ -71,7 +68,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
-  let collegesData = [];
+
+  //Array for holding whole colleges data
+  const collegesData = [];
+
   function showCollegeList(collList) {
     for (coll of collList) {
       let collegeData = {
@@ -81,10 +81,6 @@ document.addEventListener("DOMContentLoaded", function () {
         web: `https://${coll.domains[0]}`,
       };
       collegesData.push(collegeData);
-      console.log(collegeData.flag);
-      console.log(collegeData.name);
-      console.log(collegeData.state);
-      console.log(collegeData.web);
       //College Div
       let college = document.createElement("div");
       college.classList.add(
@@ -169,5 +165,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
       collegeList.append(college);
     }
+    saveAsCSV();
+  }
+
+  function saveAsCSV() {
+    let saveCsvBtn = document.createElement("button");
+    saveCsvBtn.classList.add(
+      "cursor-pointer",
+      "group",
+      "relative",
+      "flex",
+      "gap-1.5",
+      "px-8",
+      "py-4",
+      "bg-[#E8F0FE]",
+      // "bg-opacity-80",
+      "text-[#FF4444]",
+      "rounded-3xl",
+      "hover:bg-opacity-70",
+      "transition",
+      "font-semibold",
+      "shadow-md"
+    );
+    saveCsvBtn.innerHTML = `
+      Save as CSV
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="24px" width="24px">
+        <g stroke-width="0" id="SVGRepo_bgCarrier"></g>
+        <g stroke-linejoin="round" stroke-linecap="round" id="SVGRepo_tracerCarrier"></g>
+        <g id="SVGRepo_iconCarrier">
+          <g id="Interface / Download">
+            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="#FF4444" d="M6 21H18M12 3V17M12 17L17 12M12 17L7 12" id="Vector"></path>
+          </g>
+        </g>
+      </svg>
+    `;
+    saveCsvBtn.addEventListener("click", () => {
+      let csvContent = "data:text/csv;charset=utf-8,";
+      collegesData.forEach(function (rowArray) {
+        let row = Object.values(rowArray).join(",");
+        csvContent += row + "\r\n";
+      });
+
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "colleges.csv");
+      document.body.appendChild(link); // Required for FF
+      link.click();
+      document.body.removeChild(link);
+    });
+    collegeList.appendChild(saveCsvBtn);
   }
 });
