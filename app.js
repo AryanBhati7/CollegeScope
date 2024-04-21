@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     //show a loading message sweet alert 2
     Swal.fire({
-      imageUrl: "searching.gif",
+      imageUrl: "images/searching.gif",
       imageWidth: 200,
       imageHeight: 200,
       imageAlt: "Custom image",
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
       Swal.fire({
         title: "No Colleges Found",
         text: "Check for Spelling mistakes",
-        imageUrl: "not_found.gif",
+        imageUrl: "images/not_found.gif",
         imageWidth: 150,
         imageHeight: 200,
         imageAlt: "Custom image",
@@ -279,7 +279,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Create a new anchor element and set its href attribute to the encoded URI
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", "colleges.csv");
+      link.setAttribute("download", `CollegeScope-${country}-${state}.csv`);
 
       // Append the anchor element to the body (required for Firefox)
       document.body.appendChild(link);

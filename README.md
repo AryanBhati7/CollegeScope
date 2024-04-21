@@ -1,10 +1,10 @@
-# CollegeScope - Find Colleges Worldwide and Export Lists in CSV �
+# CollegeScope - Find Colleges Worldwide and Export Lists in CSV
 
 This project is a comprehensive tool for finding colleges worldwide. It allows users to search for colleges by country and export the results in a CSV format. This project was created to enhance my JavaScript skills. 💻
 
 ## Screenshot 📸
 
-<img src="ss.png" width="100%" alt="ss">
+<img src="images/ss.png" width="100%" alt="ss">
 
 ## Deployed Link 🌐
 
