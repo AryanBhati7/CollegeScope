@@ -6,8 +6,11 @@ const { parser } = require("stream-json");
 const { streamArray } = require("stream-json/streamers/StreamArray");
 const cors = require("cors");
 const app = express();
+const path = require("path");
 
 app.use(cors());
+
+app.use(express.static(__dirname));
 
 app.get("/", (req, res) => {
   res.render("index.html");
