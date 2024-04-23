@@ -11,7 +11,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <!-- Bootstrap Styles & Scripts -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body class="p-1 bg-[#232933] mx-auto">
@@ -22,23 +24,55 @@
     <div id="container" class="w-full h-full pb-4">
 
         <!-- Page - Heading -->
-        <div class="w-full flex items-center justify-center p-5">
+        <div class="w-full flex items-center justify-center  p-3">
             <h1 class="text-[#FF4444] text-7xl font-bold text-center font-monos">COLLEGE SCOPE</h1>
         </div>
 
-        <div class="w-full flex items-center justify-center p-5">
-            <h3 class="text-white text-center text-2xl">Find Colleges Worldwide and Export Lists in CSV</h3>
+        <div class="w-full flex items-center justify-center p-3">
+            <h3 class="text-white text-center text-2xl">Find Colleges throughout India and Export Lists in CSV</h3>
         </div>
 
         <!-- Search Bar -->
-        <div class=" bg-[#E8F0FE] sbg-white h-14 w-full flex items-center px-10 gap-8 md:gap-16 text-2xl">
-
-            <input id="stateInp" class="mx-auto h-10 w-4/12 border-b-4 border-solid border-[#FF4444] focus:outline-none"
-                type="text" placeholder="State.." required>
-            <input id="districtInp"
-                class="mx-auto h-10 w-4/12 border-b-4 border-solid border-[#FF4444] focus:outline-none" type="text"
-                placeholder="District.." required>
-
+        <div class=" bg-[#E8F0FE] sbg-white w-full h-16 flex items-center px-10 gap-8 md:gap-16 text-2xl">
+            <!-- Select State Dropdown -->
+            <div class="relative inline-block text-left w-full sm:w-4/12">
+                <button type="button"
+                    class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium bg-white border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
+                    id="options-menu" aria-haspopup="true" aria-expanded="true">
+                    Select State <i class="fa-solid fa-caret-down ml-2"></i>
+                </button>
+                <div class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                    id="dropdown-menu" style="display: none;">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                        <input id="search-input"
+                            class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-md focus:outline-none"
+                            type="text" placeholder="Search items" autocomplete="off">
+                        <div class="cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900 py-2 px-4"
+                            role="menuitem">Gujarat</div>
+                        <div class="cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900 py-2 px-4"
+                            role="menuitem">Delhi</div>
+                        <div class="cursor-pointer text-gray-700 hover:bg-gray-100 hover:text-gray-900 py-2 px-4"
+                            role="menuitem">Maharastra</div>
+                    </div>
+                </div>
+            </div>
+            <!-- Select District Dropdown -->
+            <div class="relative inline-block text-left w-full sm:w-4/12">
+                <button type="button"
+                    class="inline-flex items-center justify-center w-full px-4 py-2 text-sm font-medium bg-white border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
+                    id="district-menu" aria-haspopup="true" aria-expanded="true">
+                    Select District <i class="fa-solid fa-caret-down ml-2"></i>
+                </button>
+                <div class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5"
+                    id="district-dropdown-menu" style="display: none;">
+                    <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="district-menu">
+                        <input id="district-search-input"
+                            class="block w-full px-4 py-2 text-sm text-gray-700 border border-gray-300 rounded-md focus:outline-none"
+                            type="text" placeholder="Search districts" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+            <!-- Search Button -->
             <button id="searchBtn"
                 class=" mx-auto h-10 w-32 text-white border-b-2 rounded-md hover:bg-zinc-400 bg-zinc-700">Search</button>
         </div>

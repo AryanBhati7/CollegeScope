@@ -41,5 +41,36 @@ app.get("/getCollege", async (req, res) => {
     res.status(500).send("Error occurred while fetching data");
   });
 });
+app.get("/getStates", (req, res) => {
+  fs.readFile("./states_districts.json", "utf8", (err, data) => {
+    if (err) {
+      res.status(500).send("Error reading file");
+      return;
+    }
+
+    const states = JSON.parse(data).states.map((s) => s.state);
+    res.send(states);
+  });
+});
+
+app.get("/getDistricts", (req, res) => {
+  const stateQuery = req.query.state;
+
+  fs.readFile("./states_districts.json", "utf8", (err, data) => {
+    if (err) {
+      res.status(500).send("Error reading file");
+      return;
+    }
+
+    const states = JSON.parse(data).states;
+    const state = states.find((s) => s.state === stateQuery);
+
+    if (state) {
+      res.send(state.districts);
+    } else {
+      res.status(404).send("State not found");
+    }
+  });
+});
 
 app.listen(3001, () => console.log("Server running on port 3001"));

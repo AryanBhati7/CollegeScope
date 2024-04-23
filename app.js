@@ -112,11 +112,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   //function to create a college Data object
   function createCollegeData(coll) {
+    let splitName = coll["College Name"].split(" (Id:");
+    let collegeName = splitName[0];
     return {
-      name: coll["College Name"],
+      name: collegeName,
       district: coll["District Name"],
       state: coll["State Name"],
-      collegeType: coll["College Type"],
+      type: coll["College Type"],
     };
   }
 
@@ -131,23 +133,25 @@ document.addEventListener("DOMContentLoaded", function () {
       "shadow-xl",
       "shadow-gray-800",
       "w-full",
-      "px-4",
-      "h-16",
+      "px-3",
+      // "h-16",
       "bg-[#8D99AE]",
       "flex",
-      "justify-evenly",
+      "flex-col",
+      "md:flex-row",
+      "justify-around",
       "items-center",
       "gap-1",
       "even:bg-[#EDF2F4]"
     );
 
-    // Create and append country flag
-    let countryFlag = createCountryFlag();
-    college.appendChild(countryFlag);
-
     // Create and append college name
     let collegeName = createCollegeName(collegeData.name);
     college.appendChild(collegeName);
+
+    //Create and append college type
+    let collegeType = createCollegeType(collegeData.type);
+    college.appendChild(collegeType);
 
     // Create and append college state
     let collegeLocation = createCollegeLocation(
@@ -159,17 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
     return college;
   }
 
-  //FUNCTION - create country flag div and img
-  function createCountryFlag() {
-    let countryFlag = document.createElement("div");
-    countryFlag.classList.add("w-12", "h-11");
-    let flagImg = document.createElement("img");
-    flagImg.src = "flag.png";
-    flagImg.alt = "countryFlag";
-    flagImg.classList.add("w-full", "h-full", "rounded-full");
-    countryFlag.appendChild(flagImg);
-    return countryFlag;
-  }
   //FUNCTION college name div
   function createCollegeName(name) {
     // Create the main div
@@ -179,16 +172,17 @@ document.addEventListener("DOMContentLoaded", function () {
       "text-center",
       "justify-center",
       "items-center",
-      "md:pl-5",
       "font-bold",
-      "flex"
+      "flex",
+      "md:w-8/12"
     );
 
-    // Create the countryFlag div
+    // Create the collegeIcon Div
     let collegeIconDiv = document.createElement("div");
-    collegeIconDiv.id = "countryFlag";
+    collegeIconDiv.id = "collegeIcon";
     collegeIconDiv.classList.add(
-      "w-28",
+      // "w-28",
+      "md:w-1/4",
       "h-14",
       "hidden",
       "justify-center",
@@ -203,11 +197,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Create the nameText div
     let nameTextDiv = document.createElement("div");
-    nameTextDiv.classList.add("nameText");
+    nameTextDiv.classList.add("nameText", "w-full");
     nameTextDiv.innerText = name;
 
     // Append the countryFlag and nameText divs to the main div
-    collegeNameDiv.appendChild(countryFlagDiv);
+    collegeNameDiv.appendChild(collegeIconDiv);
     collegeNameDiv.appendChild(nameTextDiv);
 
     return collegeNameDiv;
@@ -217,14 +211,12 @@ document.addEventListener("DOMContentLoaded", function () {
     let collegeType = document.createElement("div");
     collegeType.id = "collegeType";
     collegeType.classList.add(
-      "w-28",
-      "md:w-2/12",
+      "md:w-3/12",
       "flex",
       "md:gap-4",
       "items-center",
       "justify-center",
       "gap-2",
-      "md:flex-row",
       "italic"
     );
 
@@ -233,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     collegeType.appendChild(typeIcon);
 
     let typeText = document.createElement("div");
+    typeText.classList.add("text-center", "flex", "justify-center");
     typeText.id = "stateText";
     typeText.innerText = type;
     collegeType.appendChild(typeText);
@@ -244,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let collegeLocation = document.createElement("div");
     collegeLocation.id = "collegeLocation";
     collegeLocation.classList.add(
-      "w-26",
       "md:w-3/12",
       "flex",
       "gap-1",
@@ -259,7 +251,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let locationText = document.createElement("div");
     locationText.id = "stateText";
-    locationText.classList.add("text-center", "flex", "justify-center", "pl-5");
+    locationText.classList.add("text-center", "flex", "justify-center");
     locationText.innerText = district + ", " + state;
     collegeLocation.appendChild(locationText);
 
@@ -273,9 +265,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Add classes to the button for styling
     saveCsvBtn.classList.add(
-      "text-lg",
+      "text-xl",
       "font-sans",
-      "font-medium",
+      "font-bold",
       "cursor-pointer",
       "group",
       "relative",
