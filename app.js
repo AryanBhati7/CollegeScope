@@ -11,71 +11,71 @@ document.addEventListener("DOMContentLoaded", function () {
   //adding event listner to the search button
   searchBtn.addEventListener("click", async () => {
     //get the country and state value from their respective inputs
-    country = document.querySelector("#countryInp").value.toLowerCase();
     state = capitalizeFirstLetter(
       document.querySelector("#stateInp").value.toLowerCase()
     );
+    district = capitalizeFirstLetter(
+      document.querySelector("#districtInp").value.toLowerCase()
+    );
+    console.log(state);
+    console.log(district);
 
     //if both state and country are not provided
-    if (!state && !country) {
+    if (!state && !district) {
       Swal.fire({
-        title: "Enter Country or State",
+        title: "Enter State and District",
         icon: "error",
       });
       return;
     }
-    //if state is not provided, then state value becomes null
-    if (!state) {
-      state = "null";
-    }
+
     //show a loading message sweet alert 2
-    Swal.fire({
-      imageUrl: "images/searching.gif",
-      imageWidth: 200,
-      imageHeight: 200,
-      imageAlt: "Custom image",
-      title: "Searching...",
-      allowOutsideClick: false,
-      showConfirmButton: false,
-      willOpen: () => {
-        Swal.showLoading();
-      },
-    });
+    // Swal.fire({
+    //   imageUrl: "images/searching.gif",
+    //   imageWidth: 200,
+    //   imageHeight: 200,
+    //   imageAlt: "Custom image",
+    //   title: "Searching...",
+    //   allowOutsideClick: false,
+    //   showConfirmButton: false,
+    //   willOpen: () => {
+    //     Swal.showLoading();
+    //   },
+    // });
 
     //getting college data from API
-    let colleges = await getCollege(country);
+    let colleges = await getCollege(state, district);
 
-    //Filtering the arrived data based on state selected by user
-    let filteredColleges =
-      state !== "null"
-        ? colleges.filter((coll) => coll["state-province"] === state)
-        : colleges;
-    //if no college found then show an error
-    if (filteredColleges.length === 0) {
-      Swal.fire({
-        title: "No Colleges Found",
-        text: "Check for Spelling mistakes",
-        imageUrl: "images/not_found.gif",
-        imageWidth: 150,
-        imageHeight: 200,
-        imageAlt: "Custom image",
-      });
-      return;
-    }
     //clear the existing college list
     collegeList.innerHTML = "";
     //calling the fnc to show college list
-    showCollegeList(filteredColleges);
+    showCollegeList(colleges);
 
     //after showing college close the loading message
     Swal.close();
   });
 
   //FUNCTION -  to fetch college from API
-  async function getCollege(country) {
-    const collegeAPI = `https://localhost:3001/getCollege?country=${country}`;
+  // async function getCollege(country) {
+  //   const collegeAPI = `http://localhost:3001/getCollege?country=${country}`;
+  //   try {
+  //     let res = await axios.get(collegeAPI);
+  //     return res.data;
+  //   } catch (error) {
+  //     console.log(error);
+  //     Swal.fire({
+  //       title: "Data Not Found",
+  //       icon: "error",
+  //     });
+  //   }
+  // }
+
+  // FUNCTION -  to fetch college from API
+  async function getCollege(state, district) {
+    const collegeAPI = `http://localhost:3001/getCollege?state=${state}&district=${district}`;
     try {
       let res = await axios.get(collegeAPI);
+      console.log(res.data);
       return res.data;
     } catch (error) {
       console.log(error);
@@ -84,8 +84,8 @@ document.addEventListener("DOMContentLoaded", function () {
         icon: "error",
       });
     }
-    return [];
   }
+
   //FUNCTION - to capitalize first letter - used for state
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -113,10 +113,10 @@ document.addEventListener("DOMContentLoaded", function () {
   //function to create a college Data object
   function createCollegeData(coll) {
     return {
-      flag: `https://flagsapi.com/${coll["alpha_two_code"]}/flat/64.png`,
-      name: coll.name,
-      state: coll["state-province"] === null ? "N/A" : coll["state-province"],
-      web: `https://${coll.domains[0]}`,
+      name: coll["College Name"],
+      district: coll["District Name"],
+      state: coll["State Name"],
+      collegeType: coll["College Type"],
     };
   }
 
@@ -142,7 +142,7 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     // Create and append country flag
-    let countryFlag = createCountryFlag(collegeData.flag);
+    let countryFlag = createCountryFlag();
     college.appendChild(countryFlag);
 
     // Create and append college name
@@ -150,22 +150,21 @@ document.addEventListener("DOMContentLoaded", function () {
     college.appendChild(collegeName);
 
     // Create and append college state
-    let collegeState = createCollegeState(collegeData.state);
-    college.appendChild(collegeState);
-
-    // Create and append college web
-    let collegeWeb = createCollegeWeb(collegeData.web);
-    college.appendChild(collegeWeb);
+    let collegeLocation = createCollegeLocation(
+      collegeData.district,
+      collegeData.state
+    );
+    college.appendChild(collegeLocation);
 
     return college;
   }
 
   //FUNCTION - create country flag div and img
-  function createCountryFlag(flagUrl) {
+  function createCountryFlag() {
     let countryFlag = document.createElement("div");
     countryFlag.classList.add("w-12", "h-11");
     let flagImg = document.createElement("img");
-    flagImg.src = flagUrl;
+    flagImg.src = "flag.png";
     flagImg.alt = "countryFlag";
     flagImg.classList.add("w-full", "h-full", "rounded-full");
     countryFlag.appendChild(flagImg);
@@ -183,8 +182,31 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     return collegeName;
   }
-  //FUNCTION - create college state
-  function createCollegeState(state) {
+  //FUNCTION  - createCollegeType
+  function createCollegeLocation(Type) {
+    let collegeType = document.createElement("div");
+    collegeType.classList.add(
+      "w-20",
+      "md:w-3/12",
+      "md:text-3xl",
+      "flex",
+      "justify-center",
+      "items-center",
+      "gap-1"
+    );
+    let stateIcon = document.createElement("i");
+    stateIcon.classList.add("fa-solid", "fa-graduation-cap");
+    collegeState.appendChild(stateIcon);
+
+    let stateText = document.createElement("div");
+    stateText.classList.add("md:text-3xl");
+    stateText.innerText = district + " " + state;
+    collegeState.appendChild(stateText);
+    return collegeState;
+  }
+
+  //FUNCTION - create college Location - district, state
+  function createCollegeLocation(district, state) {
     let collegeState = document.createElement("div");
     collegeState.classList.add(
       "w-20",
@@ -201,24 +223,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let stateText = document.createElement("div");
     stateText.classList.add("md:text-3xl");
-    stateText.innerText = state;
+    stateText.innerText = district + " " + state;
     collegeState.appendChild(stateText);
     return collegeState;
   }
 
-  function createCollegeWeb(webUrl) {
-    let webIcon = document.createElement("i");
-    webIcon.classList.add("fa-xl", "fa-solid", "fa-globe");
-    let webAnchor = document.createElement("a");
-    webAnchor.setAttribute("href", webUrl);
-    webAnchor.target = "_blank";
-    webAnchor.appendChild(webIcon);
-
-    let collegeWeb = document.createElement("div");
-    collegeWeb.classList.add("w-12", "flex", "items-center", "justify-center");
-    collegeWeb.appendChild(webAnchor);
-    return collegeWeb;
-  }
   //FUNCTION - to create a CSV
   function saveAsCSV() {
     // Create a new button element
