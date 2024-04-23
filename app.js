@@ -5,9 +5,13 @@ document.addEventListener("DOMContentLoaded", function () {
   let searchBtn = document.querySelector("#searchBtn");
 
   //declaring variables to store the state and country
-  let country;
-  let state;
+  const state = document
+    .getElementById("dropdown-menu")
+    .addEventListener("click", function (event) {
+      event.target;
+    });
 
+  console.log(state);
   //adding event listner to the search button
   searchBtn.addEventListener("click", async () => {
     //get the country and state value from their respective inputs
