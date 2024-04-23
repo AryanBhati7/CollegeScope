@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // FUNCTION -  to fetch college from API
   async function getCollege(state, district) {
-    const collegeAPI = `http://localhost:3001/getCollege?state=${state}&district=${district}`;
+    const collegeAPI = `/getCollege?state=${state}&district=${district}`;
     try {
       let res = await axios.get(collegeAPI);
       console.log(res.data);
@@ -90,11 +90,6 @@ document.addEventListener("DOMContentLoaded", function () {
         icon: "error",
       });
     }
-  }
-
-  //FUNCTION - to capitalize first letter - used for state
-  function capitalizeFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
   //Array for holding whole colleges data

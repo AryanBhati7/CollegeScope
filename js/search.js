@@ -60,7 +60,7 @@ setupDropdown(
 );
 
 async function populateStates() {
-  const response = await fetch("http://localhost:3001/getStates");
+  const response = await fetch("/getStates");
   const states = await response.json();
 
   const dropdownMenu = document.getElementById("dropdown-menu");
@@ -75,9 +75,7 @@ async function populateStates() {
 }
 
 async function populateDistricts(state) {
-  const response = await fetch(
-    `http://localhost:3001/getDistricts?state=${state}`
-  );
+  const response = await fetch(`/getDistricts?state=${state}`);
   const districts = await response.json();
 
   const dropdownMenu = document.getElementById("district-dropdown-menu");
