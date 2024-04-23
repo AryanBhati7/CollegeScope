@@ -6,6 +6,7 @@
     "axios": "^1.6.8",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "fs": "^0.0.1-security",
     "stream-chain": "^2.2.5",
     "stream-json": "^1.8.0",
     "sweetalert2": "^11.10.8"
