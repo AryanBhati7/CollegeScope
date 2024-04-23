@@ -36,10 +36,11 @@ function setupDropdown(
 
   dropdownMenu.addEventListener("click", function (event) {
     if (event.target.role === "menuitem") {
-      dropdownButton.textContent = event.target.textContent;
+      dropdownButton.querySelector("span").textContent =
+        event.target.textContent;
       dropdownMenu.style.display = "none";
       if (resetButton) {
-        resetButton.textContent = "Select District";
+        resetButton.querySelector("span").textContent = "Select District";
       }
     }
   });

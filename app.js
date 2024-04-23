@@ -7,29 +7,24 @@ document.addEventListener("DOMContentLoaded", function () {
   //declaring variables to store the state and country
   let state, district;
 
+  // Assign the text of the clicked div to the state variable
   document
     .getElementById("dropdown-menu")
     .addEventListener("click", function (event) {
-      // Assign the text of the clicked div to the state variable
       state = event.target.innerText;
       console.log(state);
     });
 
+  // Assign the text of the clicked div to the district variable
   document
     .getElementById("district-dropdown-menu")
     .addEventListener("click", function (event) {
-      // Assign the text of the clicked div to the district variable
       district = event.target.innerText;
       console.log(district);
     });
 
   //adding event listner to the search button
   searchBtn.addEventListener("click", async () => {
-    //get the country and state value from their respective inputs
-
-    // state = capitalizeFirstLetter(state).toLowerCase();
-    // district = capitalizeFirstLetter(district).toLowerCase();
-
     console.log(state);
     console.log(district);
 
@@ -58,6 +53,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //getting college data from API
     let colleges = await getCollege(state, district);
+
+    if (colleges.length === 0) {
+      Swal.fire({
+        title: "No Colleges Found",
+        text: "Check for Spelling mistakes",
+        text: "or Search for different Location",
+        imageUrl: "images/not_found.gif",
+        imageWidth: 150,
+        imageHeight: 200,
+        imageAlt: "Custom image",
+      });
+      return;
+    }
 
     //clear the existing college list
     collegeList.innerHTML = "";
@@ -133,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "w-full",
       "px-3",
       // "h-16",
-      "bg-[#8D99AE]",
+      "bg-[#ececec]",
       "flex",
       "flex-col",
       "md:flex-row",
@@ -302,12 +310,17 @@ document.addEventListener("DOMContentLoaded", function () {
       let csvContent = "data:text/csv;charset=utf-8,";
 
       // Add the header row to the CSV content
-      let headerRow = "Country,Country flag, Name,State,Web";
+      let headerRow = "Sr. No., College Name, College Type, College Location";
       csvContent += headerRow + "\r\n";
 
       // Loop through the collegesData array and add each row to the CSV content
-      collegesData.forEach(function (rowArray) {
-        let row = [country, ...Object.values(rowArray)].join(",");
+      collegesData.forEach(function (collegeData, index) {
+        let row = [
+          index + 1,
+          `"${collegeData.name}"`,
+          `"${collegeData.type}"`,
+          `"${collegeData.district}, ${collegeData.state}"`,
+        ].join(",");
         csvContent += row + "\r\n";
       });
 
@@ -317,7 +330,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Create a new anchor element and set its href attribute to the encoded URI
       const link = document.createElement("a");
       link.setAttribute("href", encodedUri);
-      link.setAttribute("download", `CollegeScope-${country}-${state}.csv`);
+      link.setAttribute("download", `CollegeScope-${state}-${district}.csv`);
 
       // Append the anchor element to the body (required for Firefox)
       document.body.appendChild(link);
@@ -328,7 +341,6 @@ document.addEventListener("DOMContentLoaded", function () {
       // Remove the anchor element from the body
       document.body.removeChild(link);
     });
-
     // Append the button to the collegeList element
     collegeList.appendChild(saveCsvBtn);
   }

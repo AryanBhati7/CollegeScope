@@ -34,15 +34,15 @@
 
         <!-- Search Bar -->
         <div id="searchBar"
-            class=" bg-[#E8F0FE] sbg-white w-full h-16 flex items-center px-10 gap-8 md:gap-16 text-2xl">
+            class=" bg-[#E8F0FE] sbg-white md:h-16 w-full flex items-center px-10 gap-8 md:gap-16 text-2xl">
             <!-- Select State Dropdown -->
             <div class="relative inline-block text-left w-full sm:w-4/12">
                 <button type="button"
-                    class="inline-flex items-center justify-center w-full px-4 py-2 text-lg font-medium bg-white border border-transparent rounded-md hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
+                    class="overflow-hidden inline-flex items-center justify-center w-full px-4 py-2 text-lg font-medium bg-white border border-transparent rounded-md hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
                     id="states-menu" aria-haspopup="true" aria-expanded="true">
-                    Select State <i class="fa-solid fa-caret-down ml-2"></i>
+                    <span> Select State </span> <i class="fa-solid fa-caret-down ml-2"></i>
                 </button>
-                <div class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-y-auto max-h-60"
+                <div class=" z-10 origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-y-auto max-h-60"
                     id="dropdown-menu" style="display: none;">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                         <input id="search-input"
@@ -57,9 +57,9 @@
                 <button type="button"
                     class="inline-flex items-center justify-center w-full px-4 py-2 text-lg font-medium bg-white border border-transparent rounded-md hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
                     id="district-menu" aria-haspopup="true" aria-expanded="true">
-                    Select District <i class="fa-solid fa-caret-down ml-2"></i>
+                    <span> Select District </span> <i class="fa-solid fa-caret-down ml-2"></i>
                 </button>
-                <div class="origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-y-auto max-h-60"
+                <div class="z-10 origin-top-right absolute right-0 mt-2 w-full rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 overflow-y-auto max-h-60"
                     id="district-dropdown-menu" style="display: none;">
                     <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="district-menu">
                         <input id="district-search-input"
@@ -70,7 +70,7 @@
             </div>
             <!-- Search Button -->
             <button id="searchBtn"
-                class=" mx-auto h-10 w-32 text-white border-b-2 rounded-md hover:bg-zinc-400 bg-zinc-700">Search</button>
+                class=" mx-auto px-4 py-2 w-56 text-white border-b-2 rounded-md hover:bg-zinc-400 bg-[#232933]">Search</button>
         </div>
 
 
