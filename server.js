@@ -11,11 +11,15 @@ app.use(cors());
 
 app.use(express.static(__dirname));
 
+app.get("/", (req, res) => {
+  res.render("index.html");
+});
+
 app.get("/getCollege", async (req, res) => {
   const { state, district } = req.query;
 
   const pipeline = chain([
-    fs.createReadStream("data/data.json"),
+    fs.createReadStream("/data/data.json"),
     parser(),
     streamArray(),
   ]);
@@ -41,8 +45,9 @@ app.get("/getCollege", async (req, res) => {
     res.status(500).send("Error occurred while fetching data");
   });
 });
+
 app.get("/getStates", (req, res) => {
-  fs.readFile("data/states_districts.json", "utf8", (err, data) => {
+  fs.readFile("/data/states_districts.json", "utf8", (err, data) => {
     if (err) {
       res.status(500).send("Error reading file");
       return;
@@ -56,7 +61,7 @@ app.get("/getStates", (req, res) => {
 app.get("/getDistricts", (req, res) => {
   const stateQuery = req.query.state;
 
-  fs.readFile("data/states_districts.json", "utf8", (err, data) => {
+  fs.readFile("/data/states_districts.json", "utf8", (err, data) => {
     if (err) {
       res.status(500).send("Error reading file");
       return;
