@@ -35,6 +35,8 @@ The website is hosted at: 👉 [CollegeScope]()
 - HTML
 - Tailwind CSS
 - JavaScript
+- NodeJS
+- Express
 
 ## Description 📝
 
