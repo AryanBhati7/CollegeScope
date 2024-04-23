@@ -2779,19 +2779,9 @@ video {
   background-color: rgb(237 242 244 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-zinc-400:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(161 161 170 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-sky-200:hover {
@@ -2799,9 +2789,9 @@ video {
   background-color: rgb(186 230 253 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-sky-100:hover {
+.hover\:bg-zinc-400:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(224 242 254 / var(--tw-bg-opacity));
+  background-color: rgb(161 161 170 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-opacity-70:hover {

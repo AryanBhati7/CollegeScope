@@ -5,22 +5,31 @@ document.addEventListener("DOMContentLoaded", function () {
   let searchBtn = document.querySelector("#searchBtn");
 
   //declaring variables to store the state and country
-  const state = document
+  let state, district;
+
+  document
     .getElementById("dropdown-menu")
     .addEventListener("click", function (event) {
-      event.target;
+      // Assign the text of the clicked div to the state variable
+      state = event.target.innerText;
+      console.log(state);
     });
 
-  console.log(state);
+  document
+    .getElementById("district-dropdown-menu")
+    .addEventListener("click", function (event) {
+      // Assign the text of the clicked div to the district variable
+      district = event.target.innerText;
+      console.log(district);
+    });
+
   //adding event listner to the search button
   searchBtn.addEventListener("click", async () => {
     //get the country and state value from their respective inputs
-    state = capitalizeFirstLetter(
-      document.querySelector("#stateInp").value.toLowerCase()
-    );
-    district = capitalizeFirstLetter(
-      document.querySelector("#districtInp").value.toLowerCase()
-    );
+
+    // state = capitalizeFirstLetter(state).toLowerCase();
+    // district = capitalizeFirstLetter(district).toLowerCase();
+
     console.log(state);
     console.log(district);
 
@@ -33,19 +42,19 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    //show a loading message sweet alert 2
-    // Swal.fire({
-    //   imageUrl: "images/searching.gif",
-    //   imageWidth: 200,
-    //   imageHeight: 200,
-    //   imageAlt: "Custom image",
-    //   title: "Searching...",
-    //   allowOutsideClick: false,
-    //   showConfirmButton: false,
-    //   willOpen: () => {
-    //     Swal.showLoading();
-    //   },
-    // });
+    // show a loading message sweet alert 2
+    Swal.fire({
+      imageUrl: "images/searching.gif",
+      imageWidth: 200,
+      imageHeight: 200,
+      imageAlt: "Custom image",
+      title: "Searching...",
+      allowOutsideClick: false,
+      showConfirmButton: false,
+      willOpen: () => {
+        Swal.showLoading();
+      },
+    });
 
     //getting college data from API
     let colleges = await getCollege(state, district);
@@ -58,21 +67,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //after showing college close the loading message
     Swal.close();
   });
-
-  //FUNCTION -  to fetch college from API
-  // async function getCollege(country) {
-  //   const collegeAPI = `http://localhost:3001/getCollege?country=${country}`;
-  //   try {
-  //     let res = await axios.get(collegeAPI);
-  //     return res.data;
-  //   } catch (error) {
-  //     console.log(error);
-  //     Swal.fire({
-  //       title: "Data Not Found",
-  //       icon: "error",
-  //     });
-  //   }
-  // }
 
   // FUNCTION -  to fetch college from API
   async function getCollege(state, district) {
