@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //importing the college list div and search button
   let collegeList = document.querySelector("#collegeList"); //Div for collgList
   let searchBtn = document.querySelector("#searchBtn");
+  let searchBar = document.querySelector("#searchBar");
 
   //declaring variables to store the state and country
   let state, district;
@@ -261,8 +262,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //FUNCTION - to create a CSV
   function saveAsCSV() {
+    // Check if the button already exists
+    let oldSaveCsvBtn = document.querySelector("#saveCsvBtn");
+
+    // If it does, remove it
+    if (oldSaveCsvBtn) {
+      oldSaveCsvBtn.remove();
+    }
     // Create a new button element
     let saveCsvBtn = document.createElement("button");
+
+    saveCsvBtn.id = "saveCsvBtn";
 
     // Add classes to the button for styling
     saveCsvBtn.classList.add(
@@ -276,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function () {
       "gap-1.5",
       "px-8",
       "py-4",
-      "bg-[#E8F0FE]",
+      "bg-[#232933]",
       "text-[#FF4444]",
       "rounded-3xl",
       "hover:bg-opacity-70",
@@ -337,6 +347,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.removeChild(link);
     });
     // Append the button to the collegeList element
-    collegeList.appendChild(saveCsvBtn);
+    searchBar.appendChild(saveCsvBtn);
   }
 });
