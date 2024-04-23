@@ -4,23 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" /> -->
     <title>College Scope</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Bootstrap Styles & Scripts
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
 </head>
 
 <body class="p-1 bg-[#232933] mx-auto">
     <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-    <!-- <body class="p-1 bg-gradient-to-r from-[#2C2C2C] to-white mx-auto"></body> -->
     <div id="container" class="w-full h-full pb-4">
 
         <!-- Page - Heading -->
@@ -34,11 +29,11 @@
 
         <!-- Search Bar -->
         <div id="searchBar"
-            class=" bg-[#E8F0FE] sbg-white md:h-16 w-full flex items-center px-10 gap-8 md:gap-16 text-2xl">
+            class=" bg-[#E8F0FE] sbg-white md:h-16 md:w-full flex items-center justify-between sm:px-10 px-3 py-3 gap-7 text-2xl">
             <!-- Select State Dropdown -->
-            <div class="relative inline-block text-left w-full sm:w-4/12">
+            <div class="relative inline-block text-left w-1/3 sm:w-1/2 md:w-1/3 lg:w-1/4">
                 <button type="button"
-                    class="overflow-hidden inline-flex items-center justify-center w-full px-4 py-2 text-lg font-medium bg-white border border-transparent rounded-md hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
+                    class="overflow-hidden inline-flex items-center justify-center md:w-full px-4 py-2 text-lg font-medium bg-white border border-transparent rounded-md hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
                     id="states-menu" aria-haspopup="true" aria-expanded="true">
                     <span> Select State </span> <i class="fa-solid fa-caret-down ml-2"></i>
                 </button>
@@ -53,9 +48,9 @@
                 </div>
             </div>
             <!-- Select District Dropdown -->
-            <div class="relative inline-block text-left w-full sm:w-4/12">
+            <div class="relative inline-block text-left  w-1/3 sm:w-1/2 md:w-1/3 lg:w-1/4">
                 <button type="button"
-                    class="inline-flex items-center justify-center w-full px-4 py-2 text-lg font-medium bg-white border border-transparent rounded-md hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
+                    class="inline-flex items-center justify-center md:w-full py-2 text-lg font-medium bg-white border border-transparent rounded-md hover:bg-sky-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-[#FF4444]"
                     id="district-menu" aria-haspopup="true" aria-expanded="true">
                     <span> Select District </span> <i class="fa-solid fa-caret-down ml-2"></i>
                 </button>
@@ -70,7 +65,10 @@
             </div>
             <!-- Search Button -->
             <button id="searchBtn"
-                class=" mx-auto px-4 py-2 w-56 text-white border-b-2 rounded-md hover:bg-zinc-400 bg-[#232933]">Search</button>
+                class="mx-auto px-4 py-2 md:w-2/12 sm:w-28 text-white border-b-2 rounded-md hover:bg-zinc-400 bg-[#232933] flex justify-center items-center gap-6">
+                <span><i class="fas fa-search"></i></span>
+                <span class="hidden sm:block">Search</span>
+            </button>
         </div>
 
 
@@ -81,6 +79,11 @@
         </div>
         <script src="js/search.js"></script>
         <script src="js/app.js"></script>
+    </div>
+    <!-- Footer -->
+    <footer class="fixed bottom-0 w-full text-center bg-[#232933] p-4">
+        <p class="text-white">Made with <span class="text-[#FF4444]">&hearts;</span> by Aryan Bhati</p>
+    </footer>
 </body>
 
 </html>
