@@ -172,60 +172,98 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   //FUNCTION college name div
   function createCollegeName(name) {
-    let collegeName = document.createElement("div");
-    collegeName.innerText = name;
-    collegeName.classList.add(
-      "w-48",
-      "md:w-full",
+    // Create the main div
+    let collegeNameDiv = document.createElement("div");
+    collegeNameDiv.id = "collegeName";
+    collegeNameDiv.classList.add(
       "text-center",
-      "md:text-3xl"
+      "justify-center",
+      "items-center",
+      "md:pl-5",
+      "font-bold",
+      "flex"
     );
-    return collegeName;
+
+    // Create the countryFlag div
+    let collegeIconDiv = document.createElement("div");
+    collegeIconDiv.id = "countryFlag";
+    collegeIconDiv.classList.add(
+      "w-28",
+      "h-14",
+      "hidden",
+      "justify-center",
+      "items-center",
+      "md:flex"
+    );
+
+    // Create the i element
+    let iElement = document.createElement("i");
+    iElement.classList.add("fa-solid", "fa-graduation-cap", "fa-lg");
+    collegeIconDiv.appendChild(iElement);
+
+    // Create the nameText div
+    let nameTextDiv = document.createElement("div");
+    nameTextDiv.classList.add("nameText");
+    nameTextDiv.innerText = name;
+
+    // Append the countryFlag and nameText divs to the main div
+    collegeNameDiv.appendChild(countryFlagDiv);
+    collegeNameDiv.appendChild(nameTextDiv);
+
+    return collegeNameDiv;
   }
   //FUNCTION  - createCollegeType
-  function createCollegeLocation(Type) {
+  function createCollegeType(type) {
     let collegeType = document.createElement("div");
+    collegeType.id = "collegeType";
     collegeType.classList.add(
-      "w-20",
-      "md:w-3/12",
-      "md:text-3xl",
+      "w-28",
+      "md:w-2/12",
       "flex",
-      "justify-center",
+      "md:gap-4",
       "items-center",
-      "gap-1"
+      "justify-center",
+      "gap-2",
+      "md:flex-row",
+      "italic"
     );
-    let stateIcon = document.createElement("i");
-    stateIcon.classList.add("fa-solid", "fa-graduation-cap");
-    collegeState.appendChild(stateIcon);
 
-    let stateText = document.createElement("div");
-    stateText.classList.add("md:text-3xl");
-    stateText.innerText = district + " " + state;
-    collegeState.appendChild(stateText);
-    return collegeState;
+    let typeIcon = document.createElement("i");
+    typeIcon.classList.add("fa-solid", "fa-school-circle-check", "fa-lg");
+    collegeType.appendChild(typeIcon);
+
+    let typeText = document.createElement("div");
+    typeText.id = "stateText";
+    typeText.innerText = type;
+    collegeType.appendChild(typeText);
+
+    return collegeType;
   }
 
-  //FUNCTION - create college Location - district, state
   function createCollegeLocation(district, state) {
-    let collegeState = document.createElement("div");
-    collegeState.classList.add(
-      "w-20",
+    let collegeLocation = document.createElement("div");
+    collegeLocation.id = "collegeLocation";
+    collegeLocation.classList.add(
+      "w-26",
       "md:w-3/12",
-      "md:text-3xl",
       "flex",
+      "gap-1",
       "justify-center",
-      "items-center",
-      "gap-1"
+      "italic",
+      "items-center"
     );
-    let stateIcon = document.createElement("i");
-    stateIcon.classList.add("fa-lg", "fa-solid", "fa-location-dot");
-    collegeState.appendChild(stateIcon);
 
-    let stateText = document.createElement("div");
-    stateText.classList.add("md:text-3xl");
-    stateText.innerText = district + " " + state;
-    collegeState.appendChild(stateText);
-    return collegeState;
+    let locationIcon = document.createElement("i");
+    locationIcon.classList.add("fa-lg", "fa-solid", "fa-location-dot");
+    collegeLocation.appendChild(locationIcon);
+
+    let locationText = document.createElement("div");
+    locationText.id = "stateText";
+    locationText.classList.add("text-center", "flex", "justify-center", "pl-5");
+    locationText.innerText = district + ", " + state;
+    collegeLocation.appendChild(locationText);
+
+    return collegeLocation;
   }
 
   //FUNCTION - to create a CSV
