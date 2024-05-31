@@ -60,8 +60,6 @@ To run the project locally, follow these steps:
 git clone https://github.com/AryanBhati7/CollegeScope
 ```
 
-To run the project locally, follow these steps:
-
 2. Navigate to the project directory:
 
 ```bash
